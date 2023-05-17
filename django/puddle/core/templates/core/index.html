@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+`<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center font-bold">Latest deals from the category you selected</h2>
+    <div class="grid-grid-cols-3 gap-3">
+        {% for item in items %}
+        <div>
+            <a href="{% url 'item:detail' item.id%}">
+                <div>
+                    <img src = "{{item.image.url}}" class = "rounded-t-xl">
+                </div>
+                <div class = "p-6 bg-white rounded-b-xl">
+                    <h2 class = "text-2xl font-semibold">{{ item.name }}</h2>
+                    <p class = "text-2xl font-semibold">Price: ${{ item.price }} </p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+`<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center font-bold">Categories</h2>
+    <div class="grid-grid-cols-3 gap-3">
+        {% for category in categories %}
+        <div class="mb-6">
+            <a href="#">
+                <div class = "p-6 bg-white rounded-b-xl margin-top-10px">
+                    <h2 class = "text-2xl font-semibold">{{ category.name }}</h2>
+                    <p class = "text-2xl font-semibold">{{ category.items.count }} items remaining</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+`<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center font-bold">Customers also viewed</h2>
+    <div class="grid-grid-cols-3 gap-3">
+        {% for item in related_items %}
+        <div>
+            <a href="{% url 'item:detail' item.id%}">
+                <div>
+                    <img src = "{{item.image.url}}" class = "rounded-t-xl">
+                </div>
+                <div class = "p-6 bg-white rounded-b-xl">
+                    <h2 class = "text-2xl font-semibold">{{ item.name }}</h2>
+                    <p class = "text-2xl font-semibold">Price: ${{ item.price }} </p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
